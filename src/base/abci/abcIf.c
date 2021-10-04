@@ -230,13 +230,9 @@ If_Man_t * Abc_NtkToIf( Abc_Ntk_t * pNtk, If_Par_t * pPars )
     Abc_AigConst1(pNtk)->pCopy = (Abc_Obj_t *)If_ManConst1( pIfMan );
     Abc_NtkForEachCi( pNtk, pNode, i )
     {
-        If_Obj_t * pIfObj = If_ManCreateCi( pIfMan );
-        pNode->pCopy = (Abc_Obj_t *)pIfObj;
+        pNode->pCopy = (Abc_Obj_t *)If_ManCreateCi( pIfMan );
         // transfer logic level information
         Abc_ObjIfCopy(pNode)->Level = pNode->Level;
-        // mark the largest level
-        if ( pIfMan->nLevelMax < (int)pIfObj->Level )
-            pIfMan->nLevelMax = (int)pIfObj->Level;
     }
 
     // load the AIG into the mapper
